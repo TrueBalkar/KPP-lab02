@@ -13,3 +13,15 @@ const DIRECTION_UP = 'up';
 const DIRECTION_RIGHT = 'right';
 const DIRECTION_DOWN = 'down';
 const DIRECTION_LEFT = 'left';
+
+module.exports = {
+    GAME_SPEED,
+    DIRECTIONS,
+    INITIAL_SNAKE_SIZE,
+    SNAKE_COLOR,
+    DOT_COLOR,
+    DIRECTION_UP,
+    DIRECTION_RIGHT,
+    DIRECTION_DOWN,
+    DIRECTION_LEFT,
+}
