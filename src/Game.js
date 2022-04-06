@@ -3,6 +3,7 @@ let {
   DIRECTIONS,
   INITIAL_SNAKE_SIZE,
   SNAKE_COLOR,
+  HEAD_COLOR,
   DOT_COLOR,
   DIRECTION_UP,
   DIRECTION_RIGHT,
@@ -29,12 +30,14 @@ class Game {
     }
     this.drawBackArea()
     this.dot = {}
+    this.dot_2 = {}
     this.score = 0
     this.currentDirection = DIRECTION_RIGHT
     this.changingDirection = false
     this.timer = null
 
     this.generateDot()
+    this.generateDot_2()
     this.ui.resetScore()
     this.ui.render()
   }
@@ -69,8 +72,13 @@ class Game {
 
     this.snake.unshift(head)
 
-
-    if (this.snake[0].x === this.dot.x && this.snake[0].y === this.dot.y) {
+    if (this.snake[0].x === this.dot_2.x && this.snake[0].y === this.dot_2.y) {
+      this.score++
+      this.changeColor()
+      this.ui.updateScore(this.score)
+      this.generateDot_2()
+    }
+    else if (this.snake[0].x === this.dot.x && this.snake[0].y === this.dot.y) {
       this.score++
       this.changeColor()
       this.ui.updateScore(this.score)
@@ -96,6 +104,17 @@ class Game {
     })
   }
 
+  generateDot_2() {
+    this.dot_2.x = this.generateRandomPixelCoord(0, this.ui.gameContainer.width - 1)
+    this.dot_2.y = this.generateRandomPixelCoord(1, this.ui.gameContainer.height - 1)
+
+    this.snake.forEach(segment => {
+      if (segment.x === this.dot_2.x && segment.y === this.dot_2.y) {
+        this.generateDot_2()
+      }
+    })
+  }
+
   drawBackArea(){
     this.ui.gameContainerForBorder = this.ui.blessed.box(this.ui.GameBoxForBorder)
 
@@ -106,10 +125,12 @@ class Game {
     this.snake.forEach(segment => {
       this.ui.draw(segment, SNAKE_COLOR)
     })
+    this.ui.draw(this.snake[0], HEAD_COLOR)
   }
 
   drawDot() {
     this.ui.draw(this.dot, DOT_COLOR)
+    this.ui.draw(this.dot_2, DOT_COLOR)
   }
 
   isGameOver() {

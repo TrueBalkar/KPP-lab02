@@ -7,6 +7,7 @@ const DIRECTIONS = {  //Розиція
 }
 let INITIAL_SNAKE_SIZE = 2 //Початковий розмір
 let SNAKE_COLOR = 'yellow' //Розмір змійки
+let HEAD_COLOR = 'red'
 let DOT_COLOR = 'green'    //Розмір яблука
 
 const DIRECTION_UP = 'up';
@@ -19,6 +20,7 @@ module.exports = {
     DIRECTIONS,
     INITIAL_SNAKE_SIZE,
     SNAKE_COLOR,
+    HEAD_COLOR,
     DOT_COLOR,
     DIRECTION_UP,
     DIRECTION_RIGHT,
